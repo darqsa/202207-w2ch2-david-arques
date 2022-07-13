@@ -3,7 +3,10 @@ function strictEquals(a, b) {
     return false;
   }
 
-  if (/-0|0/.test(a) || /-0|0/.test(b)) {
+  if (
+    (Object.is(a, 0) && Object.is(-0, a)) ||
+    (Object.is(-0, a) && Object.is(a, 0))
+  ) {
     return true;
   } else {
     return Object.is(a, b);
